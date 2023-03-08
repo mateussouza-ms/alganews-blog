@@ -9,38 +9,64 @@ interface FeaturedPostProps {
 export function FeaturedPost({ postSummary }: FeaturedPostProps) {
   return (
     <Wrapper>
-      <Tags>
-        {postSummary.tags.map((tag) => (
-          <Tag key={tag}>{tag}</Tag>
-        ))}
-      </Tags>
-      <Editor>
-        <Avatar src={postSummary.editor.avatarUrls.small} />
-        <EditorDescription>
-          <EditorName>{postSummary.editor.name}</EditorName>
-          <PostDate>{postSummary.createdAt}</PostDate>
-        </EditorDescription>
-      </Editor>
+      <BgImage bg={postSummary.imageUrls.large} />
+      <Content>
+        <Tags>
+          {postSummary.tags.map((tag) => (
+            <Tag key={tag}>{tag}</Tag>
+          ))}
+        </Tags>
+        <Editor>
+          <Avatar src={postSummary.editor.avatarUrls.small} />
+          <EditorDescription>
+            <EditorName>{postSummary.editor.name}</EditorName>
+            <PostDate>{postSummary.createdAt}</PostDate>
+          </EditorDescription>
+        </Editor>
 
-      <Title>{postSummary.title}</Title>
+        <Title>{postSummary.title}</Title>
+      </Content>
     </Wrapper>
   );
 }
 
 const Wrapper = styled.div`
+  position: relative;
   background-color: ${(p) => p.theme.primaryBackground};
   color: ${(p) => p.theme.primaryForeground};
   border-radius: ${(p) => p.theme.borderRadius};
 
-  gap: 24px;
-
   padding: 32px;
+
+  display: flex;
+  align-items: center;
+
+  width: 100%;
+  min-height: 256px;
+
+  overflow: hidden;
+`;
+
+const BgImage = styled.div<{ bg: string }>`
+  background-image: url(${(p) => p.bg});
+
+  position: absolute;
+  inset: 0;
+
+  opacity: 0.05;
+
+  z-index: 0;
+`;
+
+const Content = styled.div`
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
 
-  width: 100%;
-  min-height: 256px;
+  gap: 24px;
+
+  z-index: 1;
 `;
 
 const Tags = styled.ul`
@@ -54,8 +80,9 @@ const Tag = styled.li`
   color: ${(p) => p.theme.activeElementForeground};
   border-radius: ${(p) => p.theme.borderRadius};
 
+  font-size: 12px;
   text-transform: lowercase;
-  padding: 4px 12px;
+  padding: 4px 8px;
   cursor: default;
 `;
 
