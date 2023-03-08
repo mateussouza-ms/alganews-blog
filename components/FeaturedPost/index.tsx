@@ -1,5 +1,6 @@
 import { Post } from "ms-alganews-sdk";
 import styled from "styled-components";
+import { Avatar } from "../Avatar";
 
 interface FeaturedPostProps {
   postSummary: Post.Summary;
@@ -76,14 +77,6 @@ const EditorName = styled.div`
 
 const PostDate = styled.p`
   font-size: 12px;
-`;
-
-const Avatar = styled.img`
-  height: 40px;
-  width: 40px;
-  object-fit: cover;
-  border-radius: 20px;
-  box-shadow: 0 0 0 4px ${(p) => p.theme.primaryForeground};
 `;
 
 const Title = styled.h2`
