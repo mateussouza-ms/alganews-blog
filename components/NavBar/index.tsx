@@ -1,9 +1,7 @@
 import Link from "next/link";
 import styled from "styled-components";
 
-interface NavbarProps {}
-
-export function Navbar(props: NavbarProps) {
+export function NavBar() {
   return (
     <nav>
       <Wrapper>
