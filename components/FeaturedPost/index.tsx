@@ -1,4 +1,6 @@
 import { Post } from "ms-alganews-sdk";
+import Link from "next/link";
+import { transparentize } from "polished";
 import styled from "styled-components";
 import { Avatar } from "../Avatar";
 
@@ -7,30 +9,32 @@ interface FeaturedPostProps {
 }
 
 export function FeaturedPost({ postSummary }: FeaturedPostProps) {
+  const { id, slug, imageUrls, tags, editor, createdAt, title } = postSummary;
+
   return (
-    <Wrapper>
-      <BgImage bg={postSummary.imageUrls.large} />
+    <Wrapper href={`/posts/${id}/${slug}`}>
+      <BgImage bg={imageUrls.large} />
       <Content>
         <Tags>
-          {postSummary.tags.map((tag) => (
+          {tags.map((tag) => (
             <Tag key={tag}>{tag}</Tag>
           ))}
         </Tags>
         <Editor>
-          <Avatar src={postSummary.editor.avatarUrls.small} />
+          <Avatar src={editor.avatarUrls.small} />
           <EditorDescription>
-            <EditorName>{postSummary.editor.name}</EditorName>
-            <PostDate>{postSummary.createdAt}</PostDate>
+            <EditorName>{editor.name}</EditorName>
+            <PostDate>{createdAt}</PostDate>
           </EditorDescription>
         </Editor>
 
-        <Title>{postSummary.title}</Title>
+        <Title>{title}</Title>
       </Content>
     </Wrapper>
   );
 }
 
-const Wrapper = styled.div`
+const Wrapper = styled(Link)`
   position: relative;
   background-color: ${(p) => p.theme.primaryBackground};
   color: ${(p) => p.theme.primaryForeground};
@@ -44,7 +48,18 @@ const Wrapper = styled.div`
   width: 100%;
   min-height: 256px;
 
+  text-decoration: none;
+
   overflow: hidden;
+
+  transition: box-shadow 0.25s ease;
+
+  &:hover,
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 4px
+      ${(p) => transparentize(0.7, p.theme.primaryBackground)};
+  }
 `;
 
 const BgImage = styled.div<{ bg: string }>`
