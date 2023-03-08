@@ -2,6 +2,7 @@ import { transparentize } from "polished";
 import styled from "styled-components";
 import { HEADER_HEIGTH } from "../../_constants";
 import { Logo } from "../Logo";
+import { Navbar } from "../NavBar";
 
 interface HeaderProps {}
 
@@ -10,7 +11,7 @@ export function Header(props: HeaderProps) {
     <Wrapper>
       <Container>
         <Logo />
-        <span>navbar</span>
+        <Navbar />
       </Container>
     </Wrapper>
   );
