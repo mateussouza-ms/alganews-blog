@@ -6,9 +6,18 @@ interface ContentProps {
 }
 
 export function Content({ children }: ContentProps) {
-  return <Wrapper>{children}</Wrapper>;
+  return (
+    <Wrapper>
+      <Container>{children}</Container>
+    </Wrapper>
+  );
 }
 
 const Wrapper = styled.div`
   min-height: calc(100vh - ${HEADER_HEIGTH}px - ${FOOTER_HEIGTH}px);
+`;
+
+const Container = styled.div`
+  max-width: 848px;
+  margin: auto;
 `;
