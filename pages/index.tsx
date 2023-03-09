@@ -4,6 +4,7 @@ import { GetServerSideProps } from "next";
 import Head from "next/head";
 import { FeaturedPost } from "../components/FeaturedPost";
 import { PostCard } from "../components/PostCard";
+import { PostsGrid } from "../components/PostsGrid";
 
 interface HomeProps {
   posts?: Post.Paginated;
@@ -25,9 +26,11 @@ export default function Home({ posts }: HomeProps) {
             postSummary={posts.content[0]}
           />
 
-          {posts.content.slice(1).map((post) => (
-            <PostCard key={post.id} post={post} />
-          ))}
+          <PostsGrid>
+            {posts.content.slice(1).map((post) => (
+              <PostCard key={post.id} post={post} />
+            ))}
+          </PostsGrid>
         </>
       )}
     </div>
