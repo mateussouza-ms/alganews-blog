@@ -1,5 +1,6 @@
 import { Post } from "ms-alganews-sdk";
 import Image from "next/image";
+import Link from "next/link";
 import { transparentize } from "polished";
 import styled from "styled-components";
 
@@ -9,7 +10,7 @@ interface PostCardProps {
 
 export function PostCard({ post }: PostCardProps) {
   return (
-    <Wrapper>
+    <Wrapper href={`/posts/${post.id}/${post.slug}`}>
       <Thumbnail bg={post.imageUrls.small} />
       <Info>
         <Editor>
@@ -26,16 +27,6 @@ export function PostCard({ post }: PostCardProps) {
     </Wrapper>
   );
 }
-
-const Wrapper = styled.div`
-  position: relative;
-  min-height: 256px;
-  background-color: ${(p) => p.theme.activeElementBackground};
-  color: ${(p) => p.theme.activeElementForeground};
-  border-radius: ${(p) => p.theme.borderRadius};
-  box-shadow: 0 3px 6px
-    ${(p) => transparentize(0.9, p.theme.activeElementForeground)};
-`;
 
 const Thumbnail = styled.div<{ bg: string }>`
   position: absolute;
@@ -90,4 +81,38 @@ const PublishDate = styled.p`
 const Title = styled.h2`
   text-align: center;
   font-size: 14px;
+`;
+
+const Wrapper = styled(Link)`
+  position: relative;
+  min-height: 256px;
+  background-color: ${(p) => p.theme.activeElementBackground};
+  color: ${(p) => p.theme.activeElementForeground};
+  border-radius: ${(p) => p.theme.borderRadius};
+  box-shadow: 0 3px 6px
+    ${(p) => transparentize(0.9, p.theme.activeElementForeground)};
+
+  transition: 0.25s ease;
+
+  * {
+    transition: 0.25s ease;
+  }
+
+  &:hover,
+  &:focus {
+    background-color: ${(p) => p.theme.primaryBackground};
+    outline: none;
+    box-shadow: 0 0 0 4px
+      ${(p) => transparentize(0.7, p.theme.primaryBackground)};
+
+    * {
+      color: ${(p) => p.theme.primaryForeground};
+    }
+
+    ${Thumbnail} {
+      height: 100%;
+      opacity: 0.4;
+      border-radius: ${(p) => p.theme.borderRadius};
+    }
+  }
 `;
