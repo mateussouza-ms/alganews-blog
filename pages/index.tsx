@@ -2,6 +2,8 @@ import { ServerResponse } from "http";
 import { Post, PostService } from "ms-alganews-sdk";
 import { GetServerSideProps } from "next";
 import Head from "next/head";
+import Router from "next/router";
+import ReactPaginate from "react-paginate";
 import { FeaturedPost } from "../components/FeaturedPost";
 import { PageGrid } from "../components/PageGrid";
 import { PostCard } from "../components/PostCard";
@@ -32,6 +34,19 @@ export default function Home({ posts }: HomeProps) {
               <PostCard key={post.id} post={post} />
             ))}
           </PostsGrid>
+
+          <ReactPaginate
+            containerClassName="Pagination"
+            pageCount={posts.totalPages}
+            marginPagesDisplayed={0}
+            pageRangeDisplayed={3}
+            previousLabel="<"
+            nextLabel=">"
+            hrefBuilder={(page) => `/?page=${page}`}
+            onPageChange={(page) => {
+              Router.push(`/?page=${page.selected + 1}`);
+            }}
+          />
         </>
       )}
     </PageGrid>
