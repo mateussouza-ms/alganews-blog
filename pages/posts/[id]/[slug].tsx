@@ -1,3 +1,4 @@
+import { DiscussionEmbed } from "disqus-react";
 import { Post, PostService } from "ms-alganews-sdk";
 import { ResourceNotFoundError } from "ms-alganews-sdk/dist/errors";
 import { GetServerSideProps } from "next";
@@ -38,6 +39,15 @@ export default function PostPage({ post, host }: PostPageProps) {
             />
 
             <Markdown>{post.body}</Markdown>
+            <DiscussionEmbed
+              shortname="alganews-ms"
+              config={{
+                url: `http://${host}/posts/${post?.id}/${post?.slug}`,
+                identifier: String(post.id),
+                title: post.title,
+                language: "pt_BR",
+              }}
+            />
           </>
         )}
       </>
