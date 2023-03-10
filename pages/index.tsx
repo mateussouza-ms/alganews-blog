@@ -59,7 +59,7 @@ export const getServerSideProps: GetServerSideProps<HomeProps> = async ({
 }) => {
   const { page: _page } = query;
 
-  const page = Number(_page);
+  const page = Number(_page || 1);
 
   if (isNaN(page) || page < 1) {
     return redirectToFirstPage(res);
