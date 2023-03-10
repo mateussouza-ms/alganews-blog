@@ -65,11 +65,7 @@ export const getServerSideProps: GetServerSideProps<HomeProps> = async ({
     return redirectToFirstPage(res);
   }
 
-  const posts = await PostService.getAllPosts({
-    page: page - 1,
-    showAll: true,
-    sort: ["createdAt", "desc"],
-  });
+  const posts = await PostService.getAllPosts({ page: page - 1 });
 
   if (!posts.content?.length) {
     return redirectToFirstPage(res);

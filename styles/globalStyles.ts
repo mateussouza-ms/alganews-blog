@@ -138,6 +138,18 @@ export default createGlobalStyle`
       white-space: nowrap;
     }
 
+    pre > code {
+      white-space: inherit !important;
+      display: inline-block;
+    }
+
+    pre {
+      background-color: ${(p) => p.theme.pageForeground};
+      color: ${(p) => p.theme.pageBackground};
+      border-radius: ${(p) => p.theme.borderRadius};
+      overflow-x: auto;
+    }
+
     img {
       max-width: 100%;
     }
