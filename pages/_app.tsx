@@ -1,5 +1,7 @@
+import ProgressBar from "@badrap/bar-of-progress";
 import type { AppProps as NextAppProps } from "next/app";
 import Error from "next/error";
+import { Router } from "next/router";
 import { ThemeProvider } from "styled-components";
 import { Content } from "../components/Content";
 import { Footer } from "../components/Footer";
@@ -7,6 +9,12 @@ import { Header } from "../components/Header";
 import "../styles/globals.css";
 import GlobalStyles from "../styles/globalStyles";
 import { light } from "../styles/theme";
+
+const progress = new ProgressBar({
+  size: 2,
+  color: light.primaryBackground,
+  delay: 100,
+});
 
 interface CustomAppProps extends NextPageProps {}
 
@@ -38,3 +46,7 @@ export default function App({
     </ThemeProvider>
   );
 }
+
+Router.events.on("routeChangeStart", progress.start);
+Router.events.on("routeChangeComplete", progress.finish);
+Router.events.on("routeChangeError", progress.finish);
