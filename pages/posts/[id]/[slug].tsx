@@ -3,6 +3,7 @@ import { ResourceNotFoundError } from "ms-alganews-sdk/dist/errors";
 import { GetServerSideProps } from "next";
 import Head from "next/head";
 import { ParsedUrlQuery } from "querystring";
+import { Markdown } from "../../../components/Markdown";
 import { PostHeader } from "../../../components/PostHeader";
 
 interface PostPageProps extends NextPageProps {
@@ -21,12 +22,16 @@ export default function PostPage({ post, host }: PostPageProps) {
       </Head>
       <>
         {post && (
-          <PostHeader
-            thumbnail={post.imageUrls.large}
-            createdAt={post.createdAt}
-            title={post.title}
-            editor={post.editor}
-          />
+          <>
+            <PostHeader
+              thumbnail={post.imageUrls.large}
+              createdAt={post.createdAt}
+              title={post.title}
+              editor={post.editor}
+            />
+
+            <Markdown>{post.body}</Markdown>
+          </>
         )}
       </>
     </>
