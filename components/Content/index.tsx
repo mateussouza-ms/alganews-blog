@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { FOOTER_HEIGTH, HEADER_HEIGTH } from "../../_constants";
+import { FOOTER_HEIGHT, HEADER_HEIGHT } from "../../_constants";
 
 interface ContentProps {
   children: React.ReactNode;
@@ -14,7 +14,7 @@ export function Content({ children }: ContentProps) {
 }
 
 const Wrapper = styled.div`
-  min-height: calc(100vh - ${HEADER_HEIGTH}px - ${FOOTER_HEIGTH}px);
+  min-height: calc(100vh - ${HEADER_HEIGHT}px - ${FOOTER_HEIGHT}px);
 `;
 
 const Container = styled.div`

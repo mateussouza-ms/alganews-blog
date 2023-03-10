@@ -1,2 +1,2 @@
-export const HEADER_HEIGTH = 56;
-export const FOOTER_HEIGTH = 346;
+export const HEADER_HEIGHT = 56;
+export const FOOTER_HEIGHT = 346;

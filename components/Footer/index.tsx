@@ -1,6 +1,6 @@
 import { transparentize } from "polished";
 import styled from "styled-components";
-import { FOOTER_HEIGTH } from "../../_constants";
+import { FOOTER_HEIGHT } from "../../_constants";
 import { Logo } from "../Logo";
 
 interface HeaderProps {}
@@ -21,7 +21,7 @@ const Wrapper = styled.footer`
   color: ${(p) => p.theme.activeElementForeground};
 
   width: 100%;
-  height: ${FOOTER_HEIGTH}px;
+  height: ${FOOTER_HEIGHT}px;
 `;
 
 const Container = styled.div`

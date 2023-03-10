@@ -1,6 +1,6 @@
 import { transparentize } from "polished";
 import styled from "styled-components";
-import { HEADER_HEIGTH } from "../../_constants";
+import { HEADER_HEIGHT } from "../../_constants";
 import { Logo } from "../Logo";
 import { NavBar } from "../NavBar";
 
@@ -23,7 +23,7 @@ const Wrapper = styled.div`
   box-shadow: 0 3px 10px ${(p) => transparentize(0.9, p.theme.pageForeground)};
 
   width: 100%;
-  height: ${HEADER_HEIGTH}px;
+  height: ${HEADER_HEIGHT}px;
 `;
 
 const Container = styled.div`
