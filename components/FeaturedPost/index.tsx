@@ -2,6 +2,7 @@ import { Post } from "ms-alganews-sdk";
 import Link from "next/link";
 import { transparentize } from "polished";
 import styled from "styled-components";
+import { formatPostDate } from "../../core/utils/formatPostDate";
 import { Avatar } from "../Avatar";
 
 interface FeaturedPostProps {
@@ -24,7 +25,7 @@ export function FeaturedPost({ postSummary }: FeaturedPostProps) {
           <Avatar src={editor.avatarUrls.small} />
           <EditorDescription>
             <EditorName>{editor.name}</EditorName>
-            <PostDate>{createdAt}</PostDate>
+            <PostDate>{formatPostDate(createdAt)}</PostDate>
           </EditorDescription>
         </Editor>
 

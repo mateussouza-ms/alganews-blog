@@ -2,6 +2,7 @@ import { Post } from "ms-alganews-sdk";
 import Image from "next/image";
 import { transparentize } from "polished";
 import styled from "styled-components";
+import { formatPostDate } from "../../core/utils/formatPostDate";
 
 interface PostHeaderProps {
   thumbnail: string;
@@ -19,8 +20,8 @@ export function PostHeader(props: PostHeaderProps) {
           src={thumbnail}
           width={848}
           height={256}
-          alt={title}
           style={{ objectFit: "cover" }}
+          alt={title}
         />
       </Thumbnail>
       <Editor>
@@ -28,11 +29,11 @@ export function PostHeader(props: PostHeaderProps) {
           src={editor.avatarUrls.small}
           width={64}
           height={64}
-          objectFit={"cover"}
+          style={{ objectFit: "cover" }}
           alt={editor.name}
         />
       </Editor>
-      <PublishDate>{createdAt}</PublishDate>
+      <PublishDate>{formatPostDate(createdAt)}</PublishDate>
       <Title>{title}</Title>
     </Wrapper>
   );
