@@ -6,7 +6,7 @@ export function NavBar() {
     <nav>
       <Wrapper>
         <li>
-          <Link href="/">home</Link>
+          <NavLink href="/">home</NavLink>
         </li>
       </Wrapper>
     </nav>
@@ -21,5 +21,13 @@ const Wrapper = styled.ul`
     color: ${(p) => p.theme.pageForeground};
     text-decoration: none;
     text-transform: lowercase;
+  }
+`;
+
+const NavLink = styled(Link)`
+  &:hover,
+  &:focus {
+    color: ${(p) => p.theme.primaryBackground};
+    text-decoration: underline;
   }
 `;
