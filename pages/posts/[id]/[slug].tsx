@@ -1,28 +1,41 @@
 import { Post, PostService } from "ms-alganews-sdk";
 import { ResourceNotFoundError } from "ms-alganews-sdk/dist/errors";
 import { GetServerSideProps } from "next";
+import Head from "next/head";
 import { ParsedUrlQuery } from "querystring";
 
 interface PostPageProps extends NextPageProps {
   post?: Post.Detailed;
+  host?: string;
 }
 
-export default function PostPage({ post }: PostPageProps) {
-  return <div>{post?.title}</div>;
+export default function PostPage({ post, host }: PostPageProps) {
+  return (
+    <>
+      <Head>
+        <link
+          rel="canonical"
+          href={`http://${host}/posts/${post?.id}/${post?.slug}`}
+        />
+      </Head>
+      <div>{post?.title}</div>
+    </>
+  );
 }
 
 interface Params extends ParsedUrlQuery {
   id: string;
+  slug: string;
 }
 
 export const getServerSideProps: GetServerSideProps<
   PostPageProps,
   Params
-> = async ({ params }) => {
+> = async ({ params, req }) => {
   try {
     if (!params) return { notFound: true };
 
-    const { id } = params;
+    const { id, slug } = params;
 
     const postId = Number(id);
 
@@ -33,6 +46,7 @@ export const getServerSideProps: GetServerSideProps<
     return {
       props: {
         post,
+        host: req.headers.host,
       },
     };
   } catch (error: any) {
